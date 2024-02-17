@@ -21,52 +21,54 @@ function playRound (playerSelection, computerSelection) {
     // The if statement checks to see what the player's case-insensitive
     // choice is and checks it against the computer's choices, returning
     // The proper response for each of the 9 possible outcomes.
+    const display = document.getElementById('display');
+    let result = document.createElement('p');
+    let returnScore = 0;
     if (playerSelection.toLowerCase() == "rock") {
         // Player chooses rock
         if (computerSelection == "Rock") {
             // Computer chooses rock
-            console.log("You tie! Rock and rock means nobody wins!");
-            return 0;
+            result.textContent = 'You tie! Rock and rock means nobody wins!';
         } else if (computerSelection == "Paper") {
             // Computer chooses paper
-            console.log("You lose! Paper beats rock!");
-            return -1;
+            result.textContent = "You lose! Paper beats rock!";
+            returnScore = -1;
         } else {
             // Computer chooses scissors
-            console.log("You win! Rock beats scissors!");
-            return 1;
+            result.textContent = "You win! Rock beats scissors!";
+            returnScore = 1;
         }
     } else if (playerSelection.toLowerCase() == "paper") {
         // Player chooses paper
         if (computerSelection == "Rock") {
             // Computer chooses rock
-            console.log("You win! Paper beats rock!");
-            return 1;
+            result.textContent = 'You win! Paper beats rock!';
+            returnScore = 1;
         } else if (computerSelection == "Paper") {
             // Computer chooses paper
-            console.log("You tie! Paper and paper means nobody wins!");
-            return 0;
+            result.textContent = 'You tie! Paper and paper means nobody wins!';
         } else {
             // Computer chooses scissors
-            console.log("You lose! Scissors beats paper!");
-            return -1;
+            result.textContent = 'You lose! Scissors beats paper!';
+            returnScore = -1;
         }
     } else {
         // Player chooses scissors
         if (computerSelection == "Rock") {
             // Computer chooses rock
-            console.log("You lose! Rock beats scissors!");
-            return -1;
+            result.textContent = 'You lose! Rock beats scissors!';
+            returnScore = -1;
         } else if (computerSelection == "Paper") {
             // Computer chooses paper
-            console.log("You win! Scissors beats paper!");
-            return 1;
+            result.textContent = 'You win! Scissors beats paper!';
+            returnScore = 1;
         } else {
             // Computer chooses scissors
-            console.log("You tie! Scissors and scissors means nobody wins!");
-            return 0;
+            result.textContent = 'You tie! Scissors and scissors means nobody wins!';
         }
     }
+    display.appendChild(result);
+    return returnScore;
 }
 
 // This function will simulate a 5 round game between the player and the computer.
@@ -103,9 +105,9 @@ function playGame() {
 
 /* -- DOM Manipulation -- */
 
-const BUTTONS = document.querySelectorAll('.btn');
+const buttons = document.querySelectorAll('.btn');
 
-BUTTONS.forEach((btn) => {
+buttons.forEach((btn) => {
     let playersChoice = btn.innerHTML;
     console.log(playersChoice);
     btn.addEventListener('click', () => {
