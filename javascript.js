@@ -1,5 +1,3 @@
-console.log("Hello World");
-
 // This function will return either Rock, Paper, or Scissors
 // to represent the computer's choice for the game.
 function getComputerChoice () {
@@ -57,7 +55,7 @@ function playRound (playerSelection, computerSelection) {
         // Player chooses scissors
         if (computerSelection == "Rock") {
             // Computer chooses rock
-            console.log("You lose! Paper beats rock!");
+            console.log("You lose! Rock beats scissors!");
             return -1;
         } else if (computerSelection == "Paper") {
             // Computer chooses paper
@@ -100,4 +98,17 @@ function playGame() {
     }
 }
 
-playGame();
+// playGame();
+
+
+/* -- DOM Manipulation -- */
+
+const BUTTONS = document.querySelectorAll('.btn');
+
+BUTTONS.forEach((btn) => {
+    let playersChoice = btn.innerHTML;
+    console.log(playersChoice);
+    btn.addEventListener('click', () => {
+        playRound(playersChoice, getComputerChoice());
+    });
+});
