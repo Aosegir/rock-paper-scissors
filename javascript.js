@@ -22,8 +22,9 @@ function playRound (playerSelection, computerSelection) {
     // choice is and checks it against the computer's choices, returning
     // The proper response for each of the 9 possible outcomes.
     const display = document.getElementById('display');
+    const score = document.getElementById('score');
+    let currentScore = score.textContent;
     let result = document.createElement('p');
-    let returnScore = 0;
     if (playerSelection.toLowerCase() == "rock") {
         // Player chooses rock
         if (computerSelection == "Rock") {
@@ -32,43 +33,43 @@ function playRound (playerSelection, computerSelection) {
         } else if (computerSelection == "Paper") {
             // Computer chooses paper
             result.textContent = "You lose! Paper beats rock!";
-            returnScore = -1;
+            currentScore--;
         } else {
             // Computer chooses scissors
             result.textContent = "You win! Rock beats scissors!";
-            returnScore = 1;
+            currentScore++;
         }
     } else if (playerSelection.toLowerCase() == "paper") {
         // Player chooses paper
         if (computerSelection == "Rock") {
             // Computer chooses rock
             result.textContent = 'You win! Paper beats rock!';
-            returnScore = 1;
+            currentScore++;
         } else if (computerSelection == "Paper") {
             // Computer chooses paper
             result.textContent = 'You tie! Paper and paper means nobody wins!';
         } else {
             // Computer chooses scissors
             result.textContent = 'You lose! Scissors beats paper!';
-            returnScore = -1;
+            currentScore--;
         }
     } else {
         // Player chooses scissors
         if (computerSelection == "Rock") {
             // Computer chooses rock
             result.textContent = 'You lose! Rock beats scissors!';
-            returnScore = -1;
+            currentScore--;
         } else if (computerSelection == "Paper") {
             // Computer chooses paper
             result.textContent = 'You win! Scissors beats paper!';
-            returnScore = 1;
+            currentScore++;
         } else {
             // Computer chooses scissors
             result.textContent = 'You tie! Scissors and scissors means nobody wins!';
         }
     }
     display.appendChild(result);
-    return returnScore;
+    score.textContent = currentScore;
 }
 
 // This function will simulate a 5 round game between the player and the computer.
